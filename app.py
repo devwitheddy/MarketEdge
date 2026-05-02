@@ -36,34 +36,37 @@ st.divider()
 st.markdown('<span class="me-label">Navigate</span>', unsafe_allow_html=True)
 
 PAGES = [
-    ("💹",  "pages/1_Market_Overview.py",
-     "Market Overview",
-     "Live stock prices · 30-day returns · 1-year trend comparison · Market cap"),
-    ("🔍", "pages/2_Stock_Tracker.py",
-     "Stock Tracker",
-     "Search any ticker · Candlestick + RSI · Bollinger Bands · Price stats"),
-    ("💼", "pages/3_My_Portfolio.py",
-     "My Portfolio",
-     "Track your holdings · Live gain/loss · Allocation chart · Trend overlay"),
-    ("₿",  "pages/4_Crypto_Forex.py",
-     "Crypto & Forex",
-     "Live crypto prices · USD→KES rate · Multi-pair converter"),
-    ("📰", "pages/5_Market_News.py",
-     "Market News",
-     "Latest financial headlines · Trending stories · Direct source links"),
+    ("💹",  "pages/1_Market_Overview.py", "Market Overview",
+     "Live prices · 30-day returns · trend charts"),
+    ("🔍", "pages/2_Stock_Tracker.py",   "Stock Tracker",
+     "Any ticker · Candlestick · RSI · Bollinger"),
+    ("💼", "pages/3_My_Portfolio.py",    "My Portfolio",
+     "Live gain/loss · allocation · risk metrics"),
+    ("₿",  "pages/4_Crypto_Forex.py",    "Crypto & Forex",
+     "Crypto prices · USD→KES · converter"),
+    ("📰", "pages/5_Market_News.py",     "Market News",
+     "Live headlines · 6 categories · source links"),
 ]
 
 cols = st.columns(5)
 for col, (icon, path, title, desc) in zip(cols, PAGES):
     with col:
-        st.page_link(
-            path,
-            label=(
-                f"**{icon}  {title}**\n\n"
-                f"{desc}"
-            ),
-            use_container_width=True,
+        # Visual card (not clickable — just for display)
+        st.markdown(
+            f"<div style='"
+            f"background:#0B1526;border:1px solid #162236;"
+            f"border-radius:10px;padding:1rem 1rem 0.7rem 1rem;"
+            f"margin-bottom:0.4rem;min-height:100px'>"
+            f"<div style='font-size:1.4rem;margin-bottom:0.3rem'>{icon}</div>"
+            f"<div style='font-size:0.88rem;font-weight:700;"
+            f"color:#E2EDF8;margin-bottom:0.25rem'>{title}</div>"
+            f"<div style='font-size:0.75rem;color:#5C7A99;"
+            f"line-height:1.45'>{desc}</div>"
+            f"</div>",
+            unsafe_allow_html=True,
         )
+        # Clickable link button below the card
+        st.page_link(path, label="Open →", use_container_width=True)
 
 st.divider()
 
